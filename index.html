@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seattle Traffic</title>
+        
+        <!-- Leaflet stylesheet -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+
+        <!-- your stylesheet -->
+        <link rel="stylesheet" href="css/main.css"/>
+        
+        <!-- page icon -->
+        <link rel="icon" href="img/page-icon.png"/>
+    </head>
+    <body>
+        <div id="map">
+            <section id="search-part">
+                <h1>Seattle Traffic Cameras</h1>
+                <span id="SDOT"></span><span id='WSDOT'></span>
+                <input type="search" id="search-filter-field" 
+                class="form-control" placeholder="Filter" autofocus/>
+            </section>
+        </div>
+
+        <!-- jQuery library -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <!-- Leaflet library -->
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+        <!-- your script file -->
+        <script src="js/app.js"></script>
+    </body>
+</html>
