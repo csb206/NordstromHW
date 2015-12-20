@@ -22,4 +22,8 @@ Each object has ..
 
 ## Thoughts Behind the Design/Implemenation
 
-Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map, and show the camera description and current image in a popup when the user clicks on a marker for each camera. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). 
+Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). 
+
+I used the jQuery $.getJSON() method to retrieve the traffic camera data, as this is very simple to use and will automatically parse the results as JSON. 
+
+Since I wanted to add a marker to the map for each camera, I was also thinking what would be a good way to indicate which camera belonged to which agency using a key of some sort. So I figured the marker color should indicate who owns it (SDOT or WSDOT). Additionally, I wanted to show the camera description and current image in a popup when the user clicks on a marker for each camera.
