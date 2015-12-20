@@ -28,8 +28,12 @@ I used the jQuery $.getJSON() method to retrieve the traffic camera data, as thi
 
 Since I wanted to add a [marker](http://leafletjs.com/reference.html#circlemarker) to the map for each camera, I was also thinking what would be a good way to indicate which camera belonged to which agency using a key of some sort. So I figured the marker color should indicate who owns it (SDOT or WSDOT). Additionally, I wanted to show the camera description and current image in a popup when the user clicks on a marker for each camera.
 
-![Alt text][checkmark]
-[checkmark]: https://raw.githubusercontent.com/csb206/NordstromHW/master/screenshots/jsonFile.png
+json.forEach(function(data) {
+var longitude = data['location']['longitude'];
+var latitude = data['location']['latitude'];
+var popup = L.popup().setContent(data['ownershipcd'] + ' @ ' 
+                + data['cameralabel'] + '<p><img src=' + data['imageurl']['url'] + 
+                ' height=200 width=200></img></p>');
 
 Allowing the user to filter the set of cameras based on a search string gives the page more interactivity. When the user enters a search string, this map filters the set of camera markers shown to only those where the camera's cameralabel property contains the search string. 
 
