@@ -1,4 +1,4 @@
-/*
+us/*
     app.js
     main script file for this mapping application
     source data URL: https://data.seattle.gov/resource/65fc-btcc.json
@@ -54,15 +54,15 @@ $(function() {
     var searchFilter = document.getElementById('search-filter-field');
     searchFilter.addEventListener('keyup', function() {
         var search = this.value.toLowerCase();
-        wsdotNum= 0;
+        wsdotNum = 0;
         sdotNum = 0;
         var idx;
         for (idx = 0; idx < copyData.length; idx++) { 
-            if(copyData[idx].cameralabel.toLowerCase().indexOf(search) >= 0) {
+            if (copyData[idx].cameralabel.toLowerCase().indexOf(search) >= 0) {
                 map.addLayer(markers[idx]);
-                if(copyData[idx].ownershipcd == "SDOT") {
+                if (copyData[idx].ownershipcd == "SDOT") {
                     sdotNum++;
-                } else if(copyData[idx].ownershipcd == "WSDOT") {
+                } else if (copyData[idx].ownershipcd == "WSDOT") {
                     wsdotNum++;
                 }
             } else {
