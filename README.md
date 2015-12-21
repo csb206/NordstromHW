@@ -29,31 +29,31 @@ I used the jQuery $.getJSON() method to retrieve the traffic camera data, as thi
 Since I wanted to add a [marker](http://leafletjs.com/reference.html#circlemarker) to the map for each camera, I was also thinking what would be a good way to indicate which camera belonged to which agency using a key of some sort. So I figured the marker color should indicate who owns it (SDOT or WSDOT). Additionally, I wanted to show the camera description and current image in a popup when the user clicks on a marker for each camera.
 
 ### Pseudocode:
-$.getJSON(url).then(function(json) {
-        copyData = json;
-        var i = 0;
-        json.forEach(function(data) {
-            var longitude = data['location']['longitude'];
-            var latitude = data['location']['latitude'];
-            var popup = L.popup().setContent(data['ownershipcd'] + ' @ ' 
-                + data['cameralabel'] + '<p><img src=' + data['imageurl']['url'] + 
-                ' height=200 width=200></img></p>');
-            popup.className = 'popupLoc';
-            var marker = L.circleMarker([latitude, longitude]);
-            marker.addTo(map).bindPopup(popup);
-            if (data['ownershipcd'] == "WSDOT") {
-                marker.setStyle({radius: 10, fillColor: "#0000FF", color:"#0000FF"});
-                wsdotNum++;
-            } else if (data['ownershipcd'] == "SDOT") {
-                marker.setStyle({radius: 10, fillColor: "#00FF00", color:"#00FF00"});
-                sdotNum++;
-            }
-            markers[i] = marker;
-            i++;
-        });
-        $("#SDOT").text(sdotNum + ' by ' + sLabel + ' ');
-        $("#WSDOT").text(wsdotNum + ' by ' + wLabel);   
-    });
+	$.getJSON(url).then(function(json) {
+	        copyData = json;
+	        var i = 0;
+	        json.forEach(function(data) {
+	            var longitude = data['location']['longitude'];
+	            var latitude = data['location']['latitude'];
+	            var popup = L.popup().setContent(data['ownershipcd'] + ' @ ' 
+	                + data['cameralabel'] + '<p><img src=' + data['imageurl']['url'] + 
+	                ' height=200 width=200></img></p>');
+	            popup.className = 'popupLoc';
+	            var marker = L.circleMarker([latitude, longitude]);
+	            marker.addTo(map).bindPopup(popup);
+	            if (data['ownershipcd'] == "WSDOT") {
+	                marker.setStyle({radius: 10, fillColor: "#0000FF", color:"#0000FF"});
+	                wsdotNum++;
+	            } else if (data['ownershipcd'] == "SDOT") {
+	                marker.setStyle({radius: 10, fillColor: "#00FF00", color:"#00FF00"});
+	                sdotNum++;
+	            }
+	            markers[i] = marker;
+	            i++;
+	        });
+	        $("#SDOT").text(sdotNum + ' by ' + sLabel + ' ');
+	        $("#WSDOT").text(wsdotNum + ' by ' + wLabel);   
+	    });
 
 Allowing the user to filter the set of cameras based on a search string gives the page more interactivity. When the user enters a search string, this map filters the set of camera markers shown to only those where the camera's cameralabel property contains the search string. The filter feature will also update how many SDOT vs WSDOT cameras are currently displayed on the map. 
 
