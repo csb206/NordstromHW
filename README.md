@@ -22,13 +22,20 @@ Each object has ..
 
 ## Thoughts Behind the Design/Implemenation
 
-Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). 
+Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). The code below illustrates how to use this library and set the map layer
+
+	var map = L.map('map').setView([47.60978, -122.3331], 12);
+	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	        maxZoom: 18,
+	        id: 'csb206.cift3l4et0iwlu5kq172h0clm',
+	        accessToken: 'pk.eyJ1IjoiY3NiMjA2IiwiYSI6ImNpZnQzbDVuczBpd3h0ZWx5YWxsZ3VoaGIifQ.q18A28_QMYzrIlE08oK2Sg'
+	    }).addTo(map);
 
 I used the jQuery $.getJSON() method to retrieve the traffic camera data, as this is very simple to use and will automatically parse the results as JSON. 
 
 Since I wanted to add a [marker](http://leafletjs.com/reference.html#circlemarker) to the map for each camera, I was also thinking what would be a good way to indicate which camera belonged to which agency using a key of some sort. So I figured the marker color should indicate who owns it (SDOT or WSDOT). Additionally, I wanted to show the camera description and current image in a popup when the user clicks on a marker for each camera.
 
-### Pseudocode:
 	$.getJSON(url).then(function(json) {
 	        copyData = json;
 	        var i = 0;
@@ -57,7 +64,6 @@ Since I wanted to add a [marker](http://leafletjs.com/reference.html#circlemarke
 
 Allowing the user to filter the set of cameras based on a search string gives the page more interactivity. When the user enters a search string, this map filters the set of camera markers shown to only those where the camera's cameralabel property contains the search string. The filter feature will also update how many SDOT vs WSDOT cameras are currently displayed on the map. 
 
-### Pseudocode:
     var searchFilter = document.getElementById('search-filter-field');
     searchFilter.addEventListener('keyup', function() {
         var search = this.value.toLowerCase();
@@ -76,7 +82,7 @@ Allowing the user to filter the set of cameras based on a search string gives th
                 map.removeLayer(markers[idx]);
             }
         }
-        
+
 When the user clicks or taps on a camera marker, the maps shows information about that camera somewhere on the page. The mapping library provides a popup feature so I used that to my advantage as well. 
 
 ## Challenges
