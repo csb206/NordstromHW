@@ -31,7 +31,7 @@ $(function() {
             var latitude = data['location']['latitude'];
             var popup = L.popup().setContent(data['ownershipcd'] + ' @ ' 
                 + data['cameralabel'] + '<p><img src=' + data['imageurl']['url'] + 
-                ' height=200 width=200></img></p>');
+                ' height=250 width=250></img></p>');
             popup.className = 'popupLoc';
             var marker = L.circleMarker([latitude, longitude]);
             marker.addTo(map).bindPopup(popup);

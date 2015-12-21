@@ -4,8 +4,7 @@ Internship Seattle API Data Homework
 "In Technology data is key in making critical decisions and having too little or duplicate data may generate mislead reports. 
 Using the City of Seattle's API, https://data.seattle.gov, develop a process for continually polling/ collecting available dataset(s).
 
-It’s not enough just to have rich data, but you must able to quickly visualize in meaning full way. Use the data previously collected 
-to create visualizations."
+It’s not enough just to have rich data, but you must able to quickly visualize in meaning full way. Use the data previously collected to create visualizations."
 
 I decided to use the Seattle Traffic Camera's Report to demonstrate my thought process ability in creating a visualization for data. 
 Here is a link to the mab-based visualization for this report, http://students.washington.edu/csb206/NordstromHW/. 
@@ -22,7 +21,7 @@ Each object has ..
 
 ## Thoughts Behind the Design/Implemenation
 
-Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). The code below illustrates how to use this library and set the map layer
+Using this information, I thought it would be useful to plot these cameras on a scrollable and zoomable map. To get ahold of an interactive map, I wanted to use the [Leaflet.js library](http://leafletjs.com/) (or Google maps). The code below illustrates how to use this library and set the map layer. Using [MapBox](https://www.mapbox.com/studio/classic/projects), I have the ability to customize the map and this is where I gain access to the map id and access token below.
 
 	var map = L.map('map').setView([47.60978, -122.3331], 12);
 	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -44,7 +43,7 @@ Since I wanted to add a [marker](http://leafletjs.com/reference.html#circlemarke
 	            var latitude = data['location']['latitude'];
 	            var popup = L.popup().setContent(data['ownershipcd'] + ' @ ' 
 	                + data['cameralabel'] + '<p><img src=' + data['imageurl']['url'] + 
-	                ' height=200 width=200></img></p>');
+	                ' height=250 width=250></img></p>');
 	            popup.className = 'popupLoc';
 	            var marker = L.circleMarker([latitude, longitude]);
 	            marker.addTo(map).bindPopup(popup);
